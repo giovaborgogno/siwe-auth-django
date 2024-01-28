@@ -1,0 +1,34 @@
+[project]
+name = "siwe-auth-django"
+version = "3.0.1
+authors = [
+  { name="Giovanni Borgogno", email="giovaborgogno@gmail.com" },
+]
+description = "Custom Django authentication backend using Sign-In with Ethereum (EIP-4361) with a custom wallet user model. Available to use in django rest api or django app."
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["SIWE", "EIP-4361", "Sign-In with Ethereum", "Django", "Web3", "Authentication", "Authorization"]
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "pytz",
+  "Django>=3.0",
+  "siwe==2.4.1",
+  "web3>=6.0.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/giovaborgogno/siwe-auth-django"
+Repository = "https://github.com/giovaborgogno/siwe-auth-django"
+Issues = "https://github.com/giovaborgogno/siwe-auth-django/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/siwe_auth"]
