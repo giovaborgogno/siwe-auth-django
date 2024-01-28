@@ -1,6 +1,6 @@
 [project]
 name = "siwe-auth-django"
-version = "3.0.1
+version = "3.0.1"
 authors = [
   { name="Giovanni Borgogno", email="giovaborgogno@gmail.com" },
 ]
@@ -11,7 +11,7 @@ keywords = ["SIWE", "EIP-4361", "Sign-In with Ethereum", "Django", "Web3", "Auth
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: MIT License",
+    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 dependencies = [
