@@ -14,7 +14,7 @@ ERROR_INVALID_ADDRESS = "Ethereum address is required. Please provide a valid ch
 
 # groups.py
 # Contract ABIs:
-ERC20_ABI = [{
+ERC1155_ABI = [{
         "constant": False,
         "inputs": [
             {"name": "_owner", "type": "address"},
@@ -35,7 +35,7 @@ ERC721_ABI = [{
         "type": "function",
         }]
 
-ERC1155_ABI = [{
+ERC20_ABI = [{
         "constant": False,
         "inputs": [{"name": "_owner", "type": "address"}],
         "name": "balanceOf",
