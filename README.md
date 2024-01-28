@@ -2,7 +2,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/giovaborgogno/siwe-auth-django.svg?style=flat&label=Stars)](https://github.com/giovaborgogno/siwe-auth-django/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/giovaborgogno/siwe-auth-django.svg?style=flat&label=Forks)](https://github.com/giovaborgogno/siwe-auth-django/network/members)
 [![GitHub Issues](https://img.shields.io/github/issues/giovaborgogno/siwe-auth-django.svg?style=flat&label=Issues)](https://github.com/giovaborgogno/siwe-auth-django/issues)
-[![PyPI Version](https://img.shields.io/pypi/v/siwe-auth-django.svg?style=flat&label=PyPI%20Version)](https://test.pypi.org/project/siwe-auth-django-giovaborgogno/)
+[![PyPI Version](https://img.shields.io/pypi/v/siwe-auth-django.svg?style=flat&label=PyPI%20Version)](https://pypi.org/project/siwe-auth-django/)
 [![GitHub Release Date](https://img.shields.io/github/release-date/giovaborgogno/siwe-auth-django.svg?style=flat&label=Released)](https://github.com/giovaborgogno/siwe-auth-django/releases)
 
 Siwe Authentication is a Django app designed for Ethereum-based authentication using the Sign-In with Ethereum (EIP-4361) standard. It allows users to sign in using their Ethereum wallets, and provides flexible settings for customization.
