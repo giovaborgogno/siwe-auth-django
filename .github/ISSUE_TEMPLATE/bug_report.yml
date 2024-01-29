@@ -36,3 +36,4 @@ body:
       label: Additional Information
       description: |
         Provide any additional information such as logs, screenshots, likes, scenarios in which the bug occurs so that it facilitates resolving the issue.
+        
