@@ -1,0 +1,23 @@
+name: ❓Question/Help
+description: Ask a question or seek help
+title: "[QUESTION]: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reaching out! 🤝 Please make sure to check existing issues to avoid duplication.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question/Concern
+      description: Describe your question or concern in detail.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Additional Information
+      description: Provide any additional context or information that might help others understand and address your question.
