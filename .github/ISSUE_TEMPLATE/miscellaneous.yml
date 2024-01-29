@@ -1,0 +1,23 @@
+name: 🛠 Miscellaneous
+description: For various purposes like contributions, documentation improvements, refactoring, etc.
+title: "[MISC]: "
+labels: ["misc"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome! 🚀 Please provide details about your request, whether it's a contribution, documentation improvement, refactoring, or another purpose.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide a detailed description of your request or purpose.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Additional Information
+      description: Include any additional details, suggestions, or relevant information that can help address your request.
