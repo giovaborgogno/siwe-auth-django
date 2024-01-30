@@ -1,6 +1,6 @@
 [project]
 name = "siwe-auth-django"
-version = "3.0.1"
+version = "{{VERSION_PLACEHOLDER}}"
 authors = [
   { name="Giovanni Borgogno", email="giovaborgogno@gmail.com" },
 ]
