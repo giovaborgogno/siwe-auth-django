@@ -40,8 +40,9 @@ jobs:
     environment:
       name: pypi
       url: https://pypi.org/p/siwe-auth-django
+      PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
     permissions:
-      id-token: ${{ secrets.PYPI_API_TOKEN }}
+      id-token: environment:PYPI_API_TOKEN
 
     steps:
     - name: Download all the dists
