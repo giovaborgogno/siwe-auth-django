@@ -1,13 +1,16 @@
 from django import forms
 from django.contrib import admin
+from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from siwe_auth import models
 
+WalletModel = get_user_model()
+
 
 class WalletCreationForm(forms.ModelForm):
     class Meta:
-        model = models.Wallet
+        model = WalletModel
         fields = ("ethereum_address",)
 
     def save(self, commit=True):
@@ -25,11 +28,12 @@ class WalletChangeForm(forms.ModelForm):
     """
 
     class Meta:
-        model = models.Wallet
+        model = WalletModel
         fields = ("ethereum_address", "ens_name", "ens_avatar", "is_active", "is_admin", "is_superuser")
 
 
-class WalletAdmin(BaseUserAdmin):
+@admin.register(models.Wallet)
+class WalletBaseAdmin(BaseUserAdmin):
     # The forms to add and change user instances
     form = WalletChangeForm
     add_form = WalletCreationForm
@@ -69,7 +73,3 @@ class WalletAdmin(BaseUserAdmin):
         "ens_name",
     )
     filter_horizontal = ()
-
-
-# Now register the new UserAdmin...
-admin.site.register(models.Wallet, WalletAdmin)

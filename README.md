@@ -61,7 +61,7 @@ AUTHENTICATION_BACKENDS = [
 SESSION_COOKIE_AGE = 3 * 60 * 60 
 ```
 
-If you need to create a different auth user model refer to [Django User Model](#django-user-model) section.
+If you need to create a customized auth user model refer to [Django User Model](#django-user-model) section (Recommended).
 
 #### Add `SIWE_AUTH` config in settings.py:
 
@@ -196,13 +196,31 @@ all_usdt_owners = usdt_owners_group.user_set.all()
 By default, Siwe Authentication uses the `Wallet` model as the user model. If you prefer to use a specific user model, you can either use the provided `AbstractWallet` model or create your own user model. For more details, refer to the [Configuration](#configuration) section.
 
 ```python
-# Django project models.py
+# Django project your_app/models.py
 
 from siwe_auth.models import AbstractWallet
 
 class MyUserModel(AbstractWallet):
     # Add your custom fields here
-    pass
+```
+
+If you use a customized user model you need to register a customized admin site.
+```python
+# Django project your_app/admin.py
+
+from django.contrib import admin
+
+from django.contrib.auth import get_user_model
+from siwe_auth.admin import WalletBaseAdmin
+
+WalletModel = get_user_model()
+
+
+# You can inherit from siwe_auth.admin.WalletBaseAdmin or from django.contrib.auth.admin.BaseUserAdmin if you preffer.
+class WalletAdmin(WalletBaseAdmin): 
+    # Add your custom configuration here
+    
+admin.site.register(WalletModel, WalletAdmin)
 ```
 
 ## Contributing

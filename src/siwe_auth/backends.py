@@ -34,6 +34,7 @@ import datetime
 import logging
 from typing import Optional
 
+from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import BaseBackend
 from ens import ENS
 from web3 import Web3, HTTPProvider
@@ -47,8 +48,10 @@ from siwe import (
     VerificationError,
 )
 
-from siwe_auth import models, utils
+from siwe_auth import utils
 from siwe_auth.conf import settings
+
+WalletModel = get_user_model()
 
 
 class ENSProfile:
@@ -103,14 +106,14 @@ class SiweBackend(BaseBackend):
         # Message and nonce has been validated. Authentication complete. Continue with authorization/other.
         now = datetime.datetime.now(tz=pytz.UTC)
         try:
-            wallet = models.Wallet.objects.get(ethereum_address=siwe_message.address)
+            wallet = WalletModel.objects.get(ethereum_address=siwe_message.address)
             wallet.last_login = now
             wallet.ens_name = ens_profile.name
             wallet.ens_avatar = ens_profile.avatar
             wallet.save()
             logging.debug(f"Found wallet for address {siwe_message.address}")
-        except models.Wallet.DoesNotExist:
-            wallet = models.Wallet(
+        except WalletModel.DoesNotExist:
+            wallet = WalletModel(
                 ethereum_address=Web3.to_checksum_address(siwe_message.address),
                 ens_name=ens_profile.name,
                 ens_avatar=ens_profile.avatar,
@@ -130,13 +133,13 @@ class SiweBackend(BaseBackend):
 
         return wallet
 
-    def get_user(self, ethereum_address: str) -> Optional[models.Wallet]:
+    def get_user(self, ethereum_address: str) -> Optional[WalletModel]:
         """
         Get Wallet by ethereum address if exists.
         :param ethereum_address: Ethereum address of user.
         :return: Wallet object if exists or None
         """
         try:
-            return models.Wallet.objects.get(pk=ethereum_address)
-        except models.Wallet.DoesNotExist:
+            return WalletModel.objects.get(pk=ethereum_address)
+        except WalletModel.DoesNotExist:
             return None
