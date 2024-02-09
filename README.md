@@ -12,10 +12,8 @@ Siwe Authentication is a Django app designed for Ethereum-based authentication u
 1. [Get Started](#get-started)
     1. [Installation](#installation)
     2. [Configuration](#configuration)
-        - [Add 'siwe_auth' to your INSTALLED_APPS in settings.py](#add-siwe_auth-to-your-installed_apps-in-settingspy)
-        - [Add authentication configs in settings.py](#add-authentication-configs-in-settingspy)
-        - [Add 'SIWE_AUTH' config in settings.py](#add-siwe_auth-config-in-settingspy)
-        - [Include the Siwe Authentication URLs in your project's urls.py](#include-the-siwe-authentication-urls-in-your-projects-urlspy)
+        - [Configure your settings.py](#add-siwe_auth-to-installed_apps-in-your-settingspy-file)
+        - [Configure your urls.py](#include-the-siwe-authentication-urls-in-your-projects-urlspy)
     3. [Run migrations](#run-migrations)
 2. [Usage](#usage)
 3. [Custom Groups](#custom-groups)
@@ -27,7 +25,7 @@ Siwe Authentication is a Django app designed for Ethereum-based authentication u
 
 ### Installation
 
-Install the package using pip:
+Install the package using pip with the following command:
 
 ```bash
 pip install siwe-auth-django
@@ -36,7 +34,7 @@ pip install siwe-auth-django
 ### Configuration
 
 
-#### Add `'siwe_auth'` to your INSTALLED_APPS in settings.py:
+#### Add `'siwe_auth'` to `INSTALLED_APPS` in your settings.py file:
 
 ```python
 # settings.py
@@ -48,7 +46,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-#### Add authentication configs in settings.py:
+#### Add authentication configurations in your settings.py file:
 
 ```python
 # settings.py
@@ -63,7 +61,7 @@ SESSION_COOKIE_AGE = 3 * 60 * 60
 
 If you need to create a customized auth user model refer to [Django User Model](#django-user-model) section (Recommended).
 
-#### Add `SIWE_AUTH` config in settings.py:
+#### Add the `SIWE_AUTH` configuration in your settings.py file:
 
 Available settings:
 
@@ -107,7 +105,7 @@ urlpatterns = [
 ]
 ```
 
-- ### Run migrations:
+### Run migrations:
 
 ```bash
 python manage.py migrate
@@ -119,9 +117,8 @@ You need to follow this steps to successful authentication using SIWE protocol (
 
 1. Get nonce: GET Method `/api/auth/nonce`.
 2. Use that nonce to create a SIWE message in frontend and sign the message with your metamask or another wallet.
-3. Login: POST Method `/api/auth/login`, using the message and signature. Body of request example:
+3. Login: POST Method `/api/auth/login`, using the message and signature. Example request body:
 ```json
-# body:
 {
     "message": {
         "domain": "your_domain.com",
@@ -139,16 +136,16 @@ You need to follow this steps to successful authentication using SIWE protocol (
 4. Now you have the sessionid in cookies so you can use it for authenticated required views.
 5. Refresh the sessionid: POST Method `api/auth/refresh`.
 6. Verify if you are authenticated: GET Method `api/auth/verify`.
-7. Logout: POST Method `api/auth/logout`
+7. Logout: POST Method `api/auth/logout`.
 
 ## [Custom Groups](/src/siwe_auth/groups.py)
 
-There are 3 custom group managers by default:  
+Three custom group managers are provided by default:    
 `ERC20OwnerManager`  
 `ERC721OwnerManager`  
 `ERC1155OwnerManager`  
 
-You can create more groups managers by extending the `GroupManager` class:
+You can create more group managers by extending the `GroupManager` class:
 ```python
 from web3 import HTTPProvider
 from siwe_auth.groups import GroupManager
