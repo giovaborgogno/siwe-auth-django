@@ -133,7 +133,7 @@ class SiweBackend(BaseBackend):
 
         return wallet
 
-    def get_user(self, ethereum_address: str) -> Optional[WalletModel]:
+    def get_user(self, ethereum_address: str):
         """
         Get Wallet by ethereum address if exists.
         :param ethereum_address: Ethereum address of user.
@@ -143,3 +143,31 @@ class SiweBackend(BaseBackend):
             return WalletModel.objects.get(pk=ethereum_address)
         except WalletModel.DoesNotExist:
             return None
+        
+        
+class CheckAuthenticationForRestFramework:
+    """
+    Use Django's session framework for authentication.
+    """
+
+    def authenticate(self, request):
+        """
+        Returns a `User` if the request session currently has a logged in user.
+        Otherwise returns `None`.
+        """
+
+        # Get the session-based user from the underlying HttpRequest object
+        user = getattr(request._request, 'user', None)
+
+        if not user or not user.is_active or not user.is_authenticated:
+            return None
+
+        return (user, None)
+
+    def authenticate_header(self, request):
+        """
+        Return a string to be used as the value of the `WWW-Authenticate`
+        header in a `401 Unauthenticated` response, or `None` if the
+        authentication scheme should return `403 Permission Denied` responses.
+        """
+        pass

@@ -91,6 +91,19 @@ SIWE_AUTH = {
 }
 ``` 
 
+#### Configuration in your settings.py file for rest_framework usage:
+
+To avoid `CSRF failed` errors using django rest_framework:
+
+```python
+REST_FRAMEWORK = {
+    # ... Other configurations
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'siwe_auth.backends.CheckAuthenticationForRestFramework', # Make sure you set it as your first authentication class.
+        ],
+}
+```
+
 #### Include the Siwe Authentication URLs in your project's urls.py:
 
 ```python
